@@ -1,6 +1,5 @@
 use crate::{session, db::users};
 use std::io::{self, BufRead};
-use log::LevelFilter;
 
 pub fn new_user(user: String) {
     let user_exists = match users::get_user(user.clone()) {
@@ -21,9 +20,6 @@ pub fn new_user(user: String) {
     let new_pass_hash = session::get_password();
 
     users::set_user_pass_hash(new_user, new_pass_hash);
-
-    #[warn(unused_must_use)]
-    simple_logging::log_to_file("log.txt", LevelFilter::Info);
 }
 
 fn get_new_username() -> String {

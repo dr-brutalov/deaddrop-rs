@@ -1,0 +1,17 @@
+# Initial configuration file for the logging, provided in the log4rs "Quick Start" section (https://crates.io/crates/log4rs)
+refresh_rate: 10 seconds
+appenders:
+  # Name of my logger. Several could be configured, however, just one will suffice here.
+  events:
+    kind: file
+    path: "logs.txt"
+    encoder:
+    # Specify the pattern for logging, using the medium article linked in `README.md`
+    # I've elected to follow the format given, date as day-month-year, time as hour:min:sec, 
+    # log level, source file and line, log message and platform-specific newline
+    # More options are available here: https://docs.rs/log4rs/1.0.0/log4rs/encode/pattern/index.html#formatters
+      pattern: "{d(%m-%d-%Y %H:%M:%S)} | {({l}):5.5} | {f}:{L} — {m}{n}"
+# Allows logger to output logs to the console. After testing, this may be removed.
+root:
+  appenders:
+    - events
