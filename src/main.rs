@@ -9,6 +9,7 @@ pub mod new;
 pub mod read;
 pub mod send;
 pub mod logger;
+pub mod cocoon;
 
 fn main() {
     let args = command!()

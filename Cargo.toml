@@ -12,3 +12,4 @@ rpassword = "7.2"
 rusqlite = { version = "0.28.0", features = ["bundled"] }
 log4rs = "1.2.0"
 log = "0.4.17"
+cocoon = "0.3.2"
