@@ -43,7 +43,7 @@ pub fn decrypt_data(filepath: &str) {
     // Create a temp file that is named consistently with
     // the original implementation. This should aid in
     // integration.
-    let mut temp_file = File::create("db.db").unwrap();
+    let mut temp_file = File::create("dd.db").unwrap();
 
     // Write to the file!
     temp_file.write(&data).unwrap();
