@@ -11,3 +11,7 @@
 02-09-2023 19:34:41 | ERROR | src/logger.rs:14 — Cannot send to an unknown username: bo
 02-09-2023 19:38:18 | INFO  | src/logger.rs:12 — Database initialized. Not the first logged element? Investigate!
 02-09-2023 19:38:25 | INFO  | src/logger.rs:12 — User bru created a new user: bru
+02-09-2023 19:46:14 | INFO  | src/logger.rs:12 — Database initialized. Not the first logged element? Investigate!
+02-09-2023 19:47:08 | INFO  | src/logger.rs:12 — Database initialized. Not the first logged element? Investigate!
+02-09-2023 19:47:08 | INFO  | src/logger.rs:12 — First user will be created.
+02-09-2023 19:47:11 | INFO  | src/logger.rs:12 — User ko created a new user: ko

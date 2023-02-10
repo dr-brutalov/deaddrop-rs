@@ -1,4 +1,4 @@
-use crate::db;
+use crate::{db, logger::log_event};
 
 pub fn get_password() -> String {
     hash(read_pass())
@@ -8,6 +8,7 @@ pub fn authenticate(user: String) -> Result<bool, bcrypt::BcryptError> {
      
     // bypass auth if no users currently exist
     if db::users::no_users() {
+        log_event("info", format!("First user will be created."));
         return Ok(true);
     }
 
