@@ -1,4 +1,5 @@
 use super::db::connect;
+use crate::cocoon::encrypt_data;
 
 pub fn get_messages_for_user(user: String) -> Vec<String> {
     let db = connect();
@@ -11,6 +12,7 @@ pub fn get_messages_for_user(user: String) -> Vec<String> {
     while let Some(row) = rows.next().unwrap() {
         messages.push(row.get(0).expect("expected a value in the row"));
     }
+    encrypt_data("dd.db", true);
     messages
 }
 
@@ -20,4 +22,5 @@ pub fn save_message(message: String, recipient: String) {
     let query = "INSERT INTO Messages (recipient, data) VALUES ((SELECT id FROM Users WHERE user = :recipient), :message);";
     let mut stmt = db.prepare(query).expect("expected to prepare statement correctly");
     stmt.execute(&[(":recipient", &recipient), (":message", &message)]).expect("expected query to execute");
+    encrypt_data("dd.db", true);
 }

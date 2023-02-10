@@ -24,7 +24,7 @@ Data gets stored into the local database file dd.db. This file will not by synch
 
 ## Mitigation
 
-My proposed mitigation is to implement a method for protecting the exposed database. The initial method being explored involves using the [cocoon](https://docs.rs/cocoon/latest/cocoon/) crate.
+My proposed mitigation is to implement a method for protecting the exposed database. The initial method being explored involves using the [cocoon](https://docs.rs/cocoon/latest/cocoon/) crate. Similar to how the logging was implemented, a module was built out containing the basic functionality needed. This includes having a place-holder file that is intended to enable typical usage. Currently, this hangs on the database creation. More testing is needed.
 
 ## Logging
 

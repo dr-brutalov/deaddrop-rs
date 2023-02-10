@@ -1,6 +1,7 @@
 use rusqlite::{Connection};
 use std::{fs, path::Path};
 use crate::logger::log_event;
+use crate::cocoon::{decrypt_data, encrypt_data};
 
 pub fn connect() -> Connection {
     let mut must_initialize_db = false;
@@ -17,8 +18,10 @@ pub fn connect() -> Connection {
         for command in commands {
             connection.execute(command, ()).unwrap();
         }
+        encrypt_data("dd.db", true);
         log_event("info", format!("Database initialized. Not the first logged element? Investigate!"))
     }
-    
+    log_event("info", format!("Attempting to decrypt the database..."));
+    decrypt_data("dd-enc.db");
     return connection;
 }
