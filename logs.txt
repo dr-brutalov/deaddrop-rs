@@ -1,0 +1,13 @@
+02-09-2023 19:12:13 | INFO  | src/logger.rs:12 — Successfully created and authenticated username: bru
+02-09-2023 19:13:18 | INFO  | src/logger.rs:12 — Successfully created and authenticated username: bru
+02-09-2023 19:14:54 | INFO  | src/logger.rs:12 — User bru created a new user: boo
+02-09-2023 19:15:19 | WARN  | src/logger.rs:13 — Authentication failed for: boo
+02-09-2023 19:15:41 | ERROR | src/logger.rs:14 — Failed to find user: bo
+02-09-2023 19:24:47 | ERROR | src/logger.rs:14 — Unknown user bo; No messages available.
+02-09-2023 19:25:12 | ERROR | src/logger.rs:14 — Unknown user ; No messages available.
+02-09-2023 19:25:37 | INFO  | src/logger.rs:12 — User bru accessed their messages, yo.
+02-09-2023 19:26:04 | WARN  | src/logger.rs:13 — Unable to authenticate message(s) read for boo
+02-09-2023 19:34:37 | INFO  | src/logger.rs:12 — Message sent to user: boo
+02-09-2023 19:34:41 | ERROR | src/logger.rs:14 — Cannot send to an unknown username: bo
+02-09-2023 19:38:18 | INFO  | src/logger.rs:12 — Database initialized. Not the first logged element? Investigate!
+02-09-2023 19:38:25 | INFO  | src/logger.rs:12 — User bru created a new user: bru
