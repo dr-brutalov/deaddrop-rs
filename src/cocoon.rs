@@ -1,5 +1,6 @@
 use cocoon::{Cocoon, Error};
-use std::{File, Write, read, remove_file};
+use std::fs::{File, read, remove_file};
+use std::io::Write;
 
 // Usage: On first use, the default `dd.db` file
 // as the input. The initial function accepts
@@ -8,9 +9,9 @@ use std::{File, Write, read, remove_file};
 // the program, it would be appropriate to delete the file.
 // This should be attached to the logic for generating the
 // initial database (post user creation).
-pub fn encrypt_data(filepath: str, delete: bool) {
+pub fn encrypt_data(filepath: &str, delete: bool) {
     let data = read(filepath).unwrap();
-    let mut file = File::create("dd-enc.db").unwrap_or_else(|error| println!("Error while creating file to encrypt: {}", error));
+    let mut file = File::create("dd-enc.db").unwrap();
 
     // Create a cocoon, the container we will encrypt
     // For the initial run, a password is used.
@@ -20,10 +21,10 @@ pub fn encrypt_data(filepath: str, delete: bool) {
     // that users would need to provide.
     let cocoon = Cocoon::new(b"password");
 
-    cocoon.dump(data, &mut file).unwrap_or_else(|error| println!("Error while encrypting file: {}", error));
+    cocoon.dump(data, &mut file).unwrap_or_else(|error:Error| println!("Error while encrypting file: {:?}", error));
 
     if delete == true {
-        remove_file(filepath)
+        remove_file(filepath).unwrap();
     }
 
 }
@@ -34,17 +35,17 @@ pub fn encrypt_data(filepath: str, delete: bool) {
 // a temp file that can be operated on. Utilize the delete
 // method included with the `encrypt_data` to clean up
 // this potential data leakage.
-pub fn decrypt_data(filepath: str) {
+pub fn decrypt_data(filepath: &str) {
     let mut file = File::open(filepath).unwrap();
     let cocoon = Cocoon::new(b"password");
 
-    let data = cocoon.parse(&mut file).unwrap_or_else(|error| println!("Error while decrypting file: {}", error));
+    let data = cocoon.parse(&mut file).unwrap();
     // Create a temp file that is named consistently with
     // the original implementation. This should aid in
     // integration.
-    let mut temp_file = File::create("db.db").unwrap_or_else(|error| println!("Error creating temp file: {}", error));
+    let mut temp_file = File::create("db.db").unwrap();
 
     // Write to the file!
-    temp_file.write(&data).unwrap_or_else(|error| println!("Error while writing temp file: {}", error));
+    temp_file.write(&data).unwrap();
 }
 
