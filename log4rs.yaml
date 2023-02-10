@@ -1,5 +1,4 @@
 # Initial configuration file for the logging, provided in the log4rs "Quick Start" section (https://crates.io/crates/log4rs)
-refresh_rate: 10 seconds
 appenders:
   # Name of my logger. Several could be configured, however, just one will suffice here.
   events:
