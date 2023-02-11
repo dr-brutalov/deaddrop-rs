@@ -1,8 +1,9 @@
-02-10-2023 16:29:04 | INFO  | src/logger.rs:12 — Attempting to decrypt the database...
-02-10-2023 16:29:09 | INFO  | src/logger.rs:12 — Database initialized. Not the first logged element? Investigate!
-02-10-2023 16:29:09 | INFO  | src/logger.rs:12 — Attempting to decrypt the database...
-02-10-2023 16:29:15 | INFO  | src/logger.rs:12 — Database initialized. Not the first logged element? Investigate!
-02-10-2023 16:29:15 | INFO  | src/logger.rs:12 — Attempting to decrypt the database...
-02-10-2023 16:29:19 | INFO  | src/logger.rs:12 — First user will be created.
-02-10-2023 16:29:31 | INFO  | src/logger.rs:12 — Database initialized. Not the first logged element? Investigate!
-02-10-2023 16:29:31 | INFO  | src/logger.rs:12 — Attempting to decrypt the database...
+02-11-2023 11:31:00 | INFO  | Database initialized. Not the first logged element? Investigate!
+02-11-2023 11:31:15 | INFO  | First user will be created.
+02-11-2023 11:31:25 | INFO  | User bru created a new user: bru
+02-11-2023 11:32:08 | INFO  | User bru created a new user: foo
+02-11-2023 11:32:29 | INFO  | Message sent to user: foo
+02-11-2023 11:33:01 | INFO  | User foo accessed their messages, yo.
+02-11-2023 11:33:18 | ERROR | Unknown user bar; No messages available.
+02-11-2023 11:33:35 | ERROR | Cannot send to an unknown username: bar
+02-11-2023 11:35:40 | WARN  | Authentication failed for user: foo

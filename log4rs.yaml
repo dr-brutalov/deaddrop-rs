@@ -7,9 +7,10 @@ appenders:
     encoder:
     # Specify the pattern for logging, using the medium article linked in `README.md`
     # I've elected to follow the format given, date as day-month-year, time as hour:min:sec, 
-    # log level, source file and line, log message and platform-specific newline
+    # log level, --source file and line-- (removed, only shows call to module file; can be 
+    # improved later), log message and platform-specific newline
     # More options are available here: https://docs.rs/log4rs/1.0.0/log4rs/encode/pattern/index.html#formatters
-      pattern: "{d(%m-%d-%Y %H:%M:%S)} | {({l}):5.5} | {f}:{L} — {m}{n}"
+      pattern: "{d(%m-%d-%Y %H:%M:%S)} | {({l}):5.5} | {m}{n}"
 # Allows logger to output logs to the console. After testing, this may be removed.
 root:
   appenders:
