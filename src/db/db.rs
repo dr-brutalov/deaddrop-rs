@@ -5,7 +5,7 @@ use crate::cocoon::{decrypt_data, encrypt_data};
 
 pub fn connect() -> Connection {
     let mut must_initialize_db = false;
-    if !Path::new("dd.db").exists() {
+    if !Path::new("dd-enc.db").exists() {
         must_initialize_db = true;
     }
 
@@ -18,10 +18,10 @@ pub fn connect() -> Connection {
         for command in commands {
             connection.execute(command, ()).unwrap();
         }
-        encrypt_data("dd.db", true);
-        log_event("info", format!("Database initialized. Not the first logged element? Investigate!"))
+        log_event("info", format!("Database initialized. Not the first logged element? Investigate!"));
+        encrypt_data();
     }
-    log_event("info", format!("Attempting to decrypt the database..."));
-    decrypt_data("dd-enc.db");
+    //log_event("info", format!("Attempting to decrypt the database..."));
+    decrypt_data();
     return connection;
 }
