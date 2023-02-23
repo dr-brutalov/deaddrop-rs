@@ -1,4 +1,6 @@
-use crate::{session, db::users, logger::log_event};
+use log::{error, warn, info};
+
+use crate::{session, db::users};
 use std::io::{self, BufRead};
 
 pub fn new_user(user: String) {
@@ -8,14 +10,15 @@ pub fn new_user(user: String) {
     };
 
     if !users::no_users() && !user_exists {
-        log_event("error", format!("Failed to find user: {}", {user}));
+        error!("Failed to find user: {}", {user});
+        
         panic!("User not recognized");
     }
 
     if !session::authenticate(user.clone()).expect("Unable to authenticate user") {
         // With the inclusion of error handling here, we need to be able to reference
         // `user`. To accommodate this, the .clone() method was needed.
-        log_event("warn", format!("Authentication failed for user: {}", user));
+        warn!("Authentication failed for user: {}", user);
         panic!("Unable to authenticate user");
     }
 
@@ -24,7 +27,7 @@ pub fn new_user(user: String) {
     let new_pass_hash = session::get_password();
 
     users::set_user_pass_hash(new_user.clone(), new_pass_hash);
-    log_event("info", format!("User {} created a new user: {}", user, new_user))
+    info!("User {} created a new user: {}", user, new_user);
 }
 
 fn get_new_username() -> String {

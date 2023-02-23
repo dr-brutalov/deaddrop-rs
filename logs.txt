@@ -7,3 +7,12 @@
 02-11-2023 11:33:18 | ERROR | Unknown user bar; No messages available.
 02-11-2023 11:33:35 | ERROR | Cannot send to an unknown username: bar
 02-11-2023 11:35:40 | WARN  | Authentication failed for user: foo
+02-23-2023 14:05:02 | INFO  | Database initialized. Not the first logged element? Investigate!
+02-23-2023 14:05:14 | INFO  | First user will be created.
+02-23-2023 14:05:22 | INFO  | User bru created a new user: bru
+02-23-2023 14:05:50 | WARN  | Authentication failed for user: bru
+02-23-2023 14:06:20 | INFO  | User bru created a new user: foo
+02-23-2023 14:08:05 | INFO  | src/send.rs:22 — Message sent to user: foo
+02-23-2023 14:08:56 | INFO  | src/db/db.rs:21 — Database initialized. Not the first logged element? Investigate!
+02-23-2023 14:09:09 | INFO  | src/session.rs:13 — First user will be created.
+02-23-2023 14:09:18 | INFO  | src/new.rs:30 — User bru created a new user: bru

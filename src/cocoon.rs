@@ -4,15 +4,16 @@ use std::io::Write;
 
 
 // Usage: Revised to drop function inputs, we'll always operate on
-// the same file names and should consistently delete the temporary
+// the same file names and should consistently delete the temporary 
 // unencrypted database after creating an updated, encrypted copy.
 // When initializing the program, it would be appropriate to delete 
 // the file. This should be attached to the logic for generating the 
 // initial database (post user creation).
 pub fn encrypt_data() {
-    let data = read("dd.db").unwrap();
-    let mut file = File::create("dd-enc.db").unwrap();
+    let data = read("dd.db").expect("msg");
+    let mut file = File::create("dd-enc.db").expect("msg");
 
+    // Why this unwrap?
     let secret = read("secret.txt").unwrap();
     let temp_secret = &secret;
     let secret_bytes: &[u8] = &temp_secret;

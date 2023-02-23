@@ -1,6 +1,8 @@
 use std::io::{self, BufRead};
 
-use crate::{db::{users, messages}, logger::log_event};
+use log::{info, error};
+
+use crate::{db::{users, messages}};
 
 pub fn send_message(user: String) {
     let user_exists = match users::get_user(user.clone()) {
@@ -9,7 +11,7 @@ pub fn send_message(user: String) {
     };
 
     if !user_exists {
-        log_event("error", format!("Cannot send to an unknown username: {}", user));
+        error!("Cannot send to an unknown username: {}", user);
         panic!("User not recognized");
     }
 
@@ -17,7 +19,7 @@ pub fn send_message(user: String) {
 
     messages::save_message(message, user.clone());
 
-    log_event("info", format!("Message sent to user: {}", user));
+    info!("Message sent to user: {}", user);
 }
 
 fn get_user_message() -> String {

@@ -8,10 +8,13 @@ pub mod db;
 pub mod new;
 pub mod read;
 pub mod send;
-pub mod logger;
 pub mod cocoon;
 
 fn main() {
+    // Drop the `logger.rs`, then just use the macro calls to info, warn, etc.
+    // Load the `log4rs.yaml` config file. Handle the error during the unwrap!
+    log4rs::init_file("log4rs.yaml", Default::default()).unwrap_or_else(|error| println!("Error while loading `log4rs` config: {}", error)); 
+
     let args = command!()
         .arg(
             arg!(--to <USER> "the username to send data to")
