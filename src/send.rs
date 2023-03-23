@@ -5,6 +5,14 @@ use log::{info, error, warn};
 use crate::{db::{users, messages}, session};
 
 pub fn send_message(to: String, user: String) {
+    let user_exists = match users::get_user(user.clone()) {
+        Some(_) => true,
+        None => false,
+    };
+    if !user_exists {
+            error!("Cannot send to an unknown username: {}", user);
+            panic!("User not recognized");
+        }
     let user_exists = match users::get_user(to.clone()) {
         Some(_) => true,
         None => false,

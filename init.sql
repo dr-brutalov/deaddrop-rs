@@ -12,8 +12,14 @@ CREATE TABLE Messages (
     data TEXT NOT NULL
 );
 
+CREATE TRIGGER sender
+BEFORE UPDATE OF sender ON Messages
+BEGIN
+    SELECT raise(abort, "Attempted to alter the sender of a message.");
+END;
+
 CREATE TRIGGER msg_change
 BEFORE UPDATE OF hash ON Messages
 BEGIN
-    SELECT raise(abort, "Bad.");
+    SELECT raise(abort, "Attempted to alter the hash of a message.");
 END
