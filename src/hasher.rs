@@ -10,8 +10,6 @@ pub fn message_hash(message: String) -> String {
 
     // let result = str::from_utf8(&result_tmp).unwrap_or_else(|error| println!("The hasher error is: {}", error));
 
-    let result = result_tmp.encode_hex::<String>();
-
-    return result.to_string()
+    result_tmp.encode_hex::<String>()
 
 }

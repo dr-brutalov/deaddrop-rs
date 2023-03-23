@@ -4,10 +4,7 @@ use crate::{session, db::users};
 use std::io::{self, BufRead};
 
 pub fn new_user(user: String) {
-    let user_exists = match users::get_user(user.clone()) {
-        Some(_) => true,
-        None => false,
-    };
+    let user_exists = users::get_user(user.clone()).is_some();
 
     if !users::no_users() && !user_exists {
         error!("Failed to find user: {}", {user});

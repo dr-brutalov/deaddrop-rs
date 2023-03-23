@@ -32,5 +32,5 @@ pub fn connect() -> Connection {
     }
     //log_event("info", format!("Attempting to decrypt the database..."));
     decrypt_data();
-    return connection;
+    connection
 }

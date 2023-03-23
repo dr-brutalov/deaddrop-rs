@@ -50,7 +50,9 @@ fn main() {
 
     if let Some(name) = args.get_one::<String>("to") {
         to = to + name;
-    } if let Some(name) = args.get_one::<String>("user") {
+    } 
+    
+    if let Some(name) = args.get_one::<String>("user") {
         user = user + name; // to user and user equals
     }
 
@@ -60,7 +62,7 @@ fn main() {
         return;
     }
 
-    if new && read || new && send || read && send || read && send && new {
+    if (new || read) && send || read && new {
         println!("Deaddrop must only use a single verb");
         return;
     }
