@@ -6,6 +6,14 @@ CREATE TABLE Users (
 
 CREATE TABLE Messages (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    sender INTEGER NOT NULL REFERENCES Users(id),
     recipient INTEGER NOT NULL REFERENCES Users(id),
+    hashed_message TEXT NOT NULL,
     data TEXT NOT NULL
 );
+
+CREATE TRIGGER msg_change
+BEFORE UPDATE OF hash ON Messages
+BEGIN
+    SELECT raise(abort, "Bad.");
+END

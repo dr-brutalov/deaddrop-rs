@@ -16,3 +16,47 @@
 02-23-2023 14:08:56 | INFO  | src/db/db.rs:21 — Database initialized. Not the first logged element? Investigate!
 02-23-2023 14:09:09 | INFO  | src/session.rs:13 — First user will be created.
 02-23-2023 14:09:18 | INFO  | src/new.rs:30 — User bru created a new user: bru
+03-23-2023 08:22:51 | INFO  | Database initialized. Not the first logged element? Investigate!
+03-23-2023 08:23:04 | INFO  | First user will be created.
+03-23-2023 08:23:17 | INFO  | User bru created a new user: bru
+03-23-2023 08:24:48 | ERROR | Failed to find user: foo
+03-23-2023 08:25:31 | INFO  | User bru created a new user: foo
+03-23-2023 08:26:02 | ERROR | Cannot send to an unknown username: 
+03-23-2023 08:26:24 | INFO  | Message sent to user: bru
+03-23-2023 08:26:47 | INFO  | User bru accessed their messages, yo.
+03-23-2023 09:52:01 | INFO  | Message sent to user: foo
+03-23-2023 09:52:33 | INFO  | User foo accessed their messages, yo.
+03-23-2023 09:53:16 | INFO  | Message sent to user: foo
+03-23-2023 09:53:42 | INFO  | User foo accessed their messages, yo.
+03-23-2023 10:00:19 | INFO  | Message sent to user: foo from: bru
+03-23-2023 10:00:40 | INFO  | User foo accessed their messages, yo.
+03-23-2023 10:15:00 | INFO  | Database initialized. Not the first logged element? Investigate!
+03-23-2023 10:15:13 | INFO  | First user will be created.
+03-23-2023 10:15:23 | INFO  | Database initialized. Not the first logged element? Investigate!
+03-23-2023 10:15:37 | INFO  | First user will be created.
+03-23-2023 10:34:07 | INFO  | First user will be created.
+03-23-2023 10:34:15 | INFO  | User bru created a new user: bru
+03-23-2023 10:35:52 | ERROR | Failed to find user: foo
+03-23-2023 10:36:54 | INFO  | User bru created a new user: foo
+03-23-2023 10:37:16 | WARN  | Unable to authenticate read message(s) for bru
+03-23-2023 10:37:41 | INFO  | Message sent to user: foo from: bru
+03-23-2023 10:38:02 | INFO  | User foo accessed their messages, yo.
+03-23-2023 11:09:18 | INFO  | Database initialized. Not the first logged element? Investigate!
+03-23-2023 11:09:31 | INFO  | First user will be created.
+03-23-2023 11:09:40 | INFO  | User bru created a new user: bru
+03-23-2023 11:09:54 | ERROR | Failed to find user: foo
+03-23-2023 11:10:20 | INFO  | User bru created a new user: foo
+03-23-2023 11:20:29 | INFO  | Database initialized. Not the first logged element? Investigate!
+03-23-2023 11:20:41 | INFO  | First user will be created.
+03-23-2023 11:20:50 | INFO  | User bru created a new user: bru
+03-23-2023 11:21:20 | INFO  | User bru created a new user: foo
+03-23-2023 11:22:21 | INFO  | Database initialized. Not the first logged element? Investigate!
+03-23-2023 11:22:34 | INFO  | First user will be created.
+03-23-2023 11:22:42 | INFO  | User bru created a new user: bru
+03-23-2023 11:23:10 | INFO  | User bru created a new user: foo
+03-23-2023 11:24:22 | INFO  | Database initialized. Not the first logged element? Investigate!
+03-23-2023 11:24:35 | INFO  | First user will be created.
+03-23-2023 11:24:42 | INFO  | User bru created a new user: bru
+03-23-2023 11:25:12 | INFO  | User bru created a new user: foo
+03-23-2023 11:25:36 | INFO  | Message sent to user: foo from: bru
+03-23-2023 11:26:12 | INFO  | User foo accessed their messages, yo.
