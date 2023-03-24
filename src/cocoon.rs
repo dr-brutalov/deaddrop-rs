@@ -2,7 +2,6 @@ use cocoon::{Cocoon, Error};
 use std::fs::{File, read, remove_file};
 use std::io::Write;
 
-
 // Usage: Revised to drop function inputs, we'll always operate on
 // the same file names and should consistently delete the temporary 
 // unencrypted database after creating an updated, encrypted copy.
@@ -16,7 +15,7 @@ pub fn encrypt_data() {
     // Why this unwrap?
     let secret = read("secret.txt").unwrap();
     let temp_secret = &secret;
-    let secret_bytes: &[u8] = &temp_secret;
+    let secret_bytes: &[u8] = temp_secret;
 
     // Create a cocoon, the container we will encrypt
     // For the initial run, a password is used.
@@ -43,7 +42,7 @@ pub fn decrypt_data() {
 
     let secret = read("secret.txt").unwrap();
     let temp_secret = &secret;
-    let secret_bytes: &[u8] = &temp_secret;
+    let secret_bytes: &[u8] = temp_secret;
 
     let cocoon = Cocoon::new(secret_bytes);
 
@@ -54,7 +53,7 @@ pub fn decrypt_data() {
     let mut temp_file = File::create("dd.db").unwrap();
 
     // Write to the file!
-    temp_file.write(&data).unwrap();
+    temp_file.write_all(&data).unwrap();
 }
 
 // // A function that reads in a file and uses the contents to create a cocoon,
@@ -63,4 +62,18 @@ pub fn decrypt_data() {
 //     let mut file = File::open("secret.txt").to;
 //     let cocoon
 
+// }
+
+// pub fn create_global_cocoon() -> Cocoon<Creation> {
+//     let cocoon = create_cocoon();
+//     return cocoon
+// }
+
+// fn create_cocoon() -> &'static Cocoon<'static, Creation> {
+//     let secret = read("secret.txt").unwrap();
+//     let temp_secret = &secret;
+//     let secret_bytes: &[u8] = &temp_secret;
+
+//     let cocoon = Cocoon::new(secret_bytes);
+//     return &cocoon
 // }

@@ -3,10 +3,7 @@ use log::{error, warn, info};
 use crate::{session, db::{messages, users}};
 
 pub fn read_messages(user: String) {
-    let user_exists = match users::get_user(user.clone()) {
-        Some(_) => true,
-        None => false,
-    };
+    let user_exists = users::get_user(user.clone()).is_some();
 
     if !user_exists {
         error!("Unknown user {}; No messages available.", user);

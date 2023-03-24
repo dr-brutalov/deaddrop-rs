@@ -8,7 +8,8 @@ pub mod db;
 pub mod new;
 pub mod read;
 pub mod send;
-pub mod cocoon;
+//pub mod cocoon;
+pub mod hasher;
 
 fn main() {
     // Drop the `logger.rs`, then just use the macro calls to info, warn, etc.
@@ -35,7 +36,7 @@ fn main() {
                 .takes_value(false)
         )
         .arg(
-            arg!(--send "run the utility in send mode")
+            arg!(--send "run the utility in send mode, requires --to and --user")
                 .takes_value(false)
         )
         .get_matches();
@@ -45,10 +46,14 @@ fn main() {
     let send = args.is_present("send");
     let mut user: String = String::new();
 
+    let mut to: String = String::new();
+
     if let Some(name) = args.get_one::<String>("to") {
-        user = user + name;
-    } else if let Some(name) = args.get_one::<String>("user") {
-        user = user + name;
+        to = to + name;
+    } 
+    
+    if let Some(name) = args.get_one::<String>("user") {
+        user = user + name; // to user and user equals
     }
 
     if !read && !send && !new {
@@ -57,7 +62,7 @@ fn main() {
         return;
     }
 
-    if new && read || new && send || read && send || read && send && new {
+    if (new || read) && send || read && new {
         println!("Deaddrop must only use a single verb");
         return;
     }
@@ -65,7 +70,7 @@ fn main() {
     if read {
         read_messages(user);
     } else if send {
-        send_message(user);
+        send_message(to, user);
     } else if new {
         new_user(user);
     }

@@ -40,3 +40,29 @@ My proposed mitigation is to implement a method for protecting the exposed datab
 To improve this, an additional mechanism was be implemented. Users will need to provide a file,`secret.txt`, containing a case-sensitive password. Since this tool would most likely be distributed as an executable binary file, this requirement would need to be shared exterior to the tool. Users would be expected to provide and remove the `secret.txt` file when using the tool. This is not a perfect solution either, further improvement could be made to require a user to utilize a USB-based storage device containing the required file, allowing for obfuscation from writing to internal memory. For a proof of concept, an example secret file is included. A full release of this tool would not include this file to encourage individualized usage.
 
 The `secret.txt` file must be provided to initialize the program. This has been tested with a single line of input in said file, anything more fancy may not function. Otherwise, a `tread 'main' panicked at 'called \`Result::unwrap()\` on \`Err\` value: Cryptography', src/cocoon.rs:49:40` error is thrown. This intentionally left ambiguous. Without access to the original code, an attacker will have a difficult time diagnosing the issue.
+
+## MAC Implementation
+
+A message authentication code (MAC) has been added to address the issue of message integrity. This was done via the [hasher](src/hasher.rs) module, a simple SHA2 hashing function. Upon a message being created, a hash of that data is calculated and stored in the message database. Upon reading the messages for a user, the hash of each message is verified. If a message has been tampered with, `"MESSAGE HAS BEEN ALTERED:"` is prepended. This is only applied to each altered message, allowing a user to discern which, if any messages have been altered. 
+
+One might observe that simply storing the hash is an insufficient method for establishing a MAC; what's to prevent an attacker from altering the message **and** the hash? To address this very reasonable concern, the database includes the use of a `TRIGGER` that prevents direct editing the column that holds the message hash. To test this is working as intended, follow the procedure below. 
+
+1. Remove the usage of **cocoon** throughout the `deaddrop-rs`. Easiest way to do this is comment out `pub mod cocoon;` in [main.rs](src/main.rs) and then resolve the subsequent errors.
+2. In [db.rs](src/db/db.rs), replace `"dd-enc.db"` in the `connect()` function with `"dd.db"`.
+3. View the database contents and identify the ID of a message that you wish to alter for testing purposes.
+4. Using your sql library of choice, run the SQL query given below. I used `sqlite3` for my testing and validation so milage may vary slightly. 
+```sql
+UPDATE Messages
+SET data = "New message content goes here."
+WHERE id =1;
+```
+5. Upon using the application to read the edited message, it should be flagged as outlined above.
+
+Using the procedure outlined above, one can easily verify that the built-in protection for the message hash works as intended, simply alter the SQL query to change the contents of `hashed_message`.
+
+After verifying the MAC and extra database security, ensure that the cocoon features are reenabled. Once could also test this behavior in a more integrated way, however, this method of testing ensures that the the new, individual addition works as intended and not as a side effect of the underlying database encryption schema.
+
+Using the same technique that was used to secure the message hash, the sender of a message is also now also tracked. To further the usability and transparency of the application, the sender of each message is listed when messages are checked. To ensure that the messaging system isn't abused, users are now required to authenticate prior to sending a message. As an example, if user `bar` wants to send to user `foo` the command below is used. 
+```bash
+cargo run -- --send --to foo --user bar
+``` 
