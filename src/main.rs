@@ -8,7 +8,7 @@ pub mod db;
 pub mod new;
 pub mod read;
 pub mod send;
-//pub mod cocoon;
+pub mod cocoon;
 pub mod hasher;
 
 fn main() {

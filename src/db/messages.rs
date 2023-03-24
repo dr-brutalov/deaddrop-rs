@@ -2,7 +2,7 @@ use log::{warn};
 
 use super::db::connect;
 use crate::hasher::message_hash;
-//use crate::cocoon::encrypt_data;
+use crate::cocoon::encrypt_data;
 
 pub fn get_messages_for_user(user: String) -> Vec<String> {
     let db = connect();
@@ -40,7 +40,7 @@ pub fn get_messages_for_user(user: String) -> Vec<String> {
         
         messages.push(full_message);
     }
-    //encrypt_data();
+    encrypt_data();
     messages
 }
 
@@ -58,5 +58,5 @@ pub fn save_message(message: String, sender: String, recipient: String) {
     let query = "INSERT INTO Messages (sender, recipient, hashed_message, data) VALUES ((SELECT id FROM Users WHERE user = :sender), (SELECT id FROM Users WHERE user = :recipient), :hashed_message, :message);";
     let mut stmt = db.prepare(query).expect("expected to prepare statement correctly");
     stmt.execute(&[(":sender", &sender), (":recipient", &recipient), (":hashed_message", &hashed_message), (":message", &message)]).expect("expected query to execute");
-    //encrypt_data();
+    encrypt_data();
 }
