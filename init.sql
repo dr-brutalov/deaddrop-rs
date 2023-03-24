@@ -19,7 +19,7 @@ BEGIN
 END;
 
 CREATE TRIGGER msg_change
-BEFORE UPDATE OF hash ON Messages
+BEFORE UPDATE OF hashed_message ON Messages
 BEGIN
     SELECT raise(abort, "Attempted to alter the hash of a message.");
 END

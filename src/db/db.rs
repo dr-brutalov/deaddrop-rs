@@ -2,11 +2,11 @@ use log::{info, error, warn};
 use rusqlite::{Connection};
 use core::panic;
 use std::{fs, path::Path};
-use crate::cocoon::{decrypt_data, encrypt_data};
+//use crate::cocoon::{decrypt_data, encrypt_data};
 
 pub fn connect() -> Connection {
     let mut must_initialize_db = false;
-    if !Path::new("dd-enc.db").exists() {
+    if !Path::new("dd.db").exists() {
         must_initialize_db = true;
     }
 
@@ -29,9 +29,9 @@ pub fn connect() -> Connection {
                 
         }
         info!("Database initialized. Not the first logged element? Investigate!");
-        encrypt_data();
+        //encrypt_data();
     }
     //log_event("info", format!("Attempting to decrypt the database..."));
-    decrypt_data();
+    //decrypt_data();
     connection
 }

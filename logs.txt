@@ -60,3 +60,13 @@
 03-23-2023 11:25:12 | INFO  | User bru created a new user: foo
 03-23-2023 11:25:36 | INFO  | Message sent to user: foo from: bru
 03-23-2023 11:26:12 | INFO  | User foo accessed their messages, yo.
+03-24-2023 11:24:15 || WARN  || src/db/messages.rs::35 || At least one message for user: foo have been modified.
+03-24-2023 11:24:15 || WARN  || src/db/messages.rs::36 || Application integrity has been breached.
+03-24-2023 11:24:15 || INFO  || src/read.rs::22 || User foo accessed their messages, yo.
+03-24-2023 11:27:46 || INFO  || src/send.rs::29 || Message sent to user: bru from: foo
+03-24-2023 11:27:58 || INFO  || src/read.rs::22 || User bru accessed their messages, yo.
+03-24-2023 11:31:20 || ERROR || src/send.rs::16 || Cannot send to an unknown username `urb` from user `bru` 
+03-24-2023 11:31:36 || ERROR || src/send.rs::16 || Cannot send to an unknown username `bar` from user `bru` 
+03-24-2023 11:32:05 || ERROR || src/send.rs::11 || Cannot send to an unknown username `urb` from user `bru`.
+03-24-2023 11:34:30 || INFO  || src/read.rs::22 || User bru accessed their messages, yo.
+03-24-2023 11:36:08 || INFO  || src/send.rs::29 || Message sent to user `bru` from `foo`

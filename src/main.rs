@@ -8,7 +8,7 @@ pub mod db;
 pub mod new;
 pub mod read;
 pub mod send;
-pub mod cocoon;
+//pub mod cocoon;
 pub mod hasher;
 
 fn main() {
@@ -36,7 +36,7 @@ fn main() {
                 .takes_value(false)
         )
         .arg(
-            arg!(--send "run the utility in send mode")
+            arg!(--send "run the utility in send mode, requires --to and --user")
                 .takes_value(false)
         )
         .get_matches();

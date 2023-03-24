@@ -8,12 +8,12 @@ pub fn send_message(to: String, user: String) {
     let user_exists = users::get_user(user.clone()).is_some();
 
     if !user_exists {
-            error!("Cannot send to an unknown username: {}", user);
+            error!("Cannot send to an unknown username `{}` from user `{}`.", user, to);
             panic!("User not recognized");
         }
     let user_exists = users::get_user(to.clone()).is_some();
     if !user_exists {
-            error!("Cannot send to an unknown username: {}", to);
+            error!("Cannot send to an unknown username `{}` from user `{}` ", to, user);
             panic!("User not recognized");
         }
 
@@ -26,7 +26,7 @@ pub fn send_message(to: String, user: String) {
 
     messages::save_message(message, user.clone(), to.clone());
 
-    info!("Message sent to user: {} from: {}", to, user);
+    info!("Message sent to user `{}` from `{}`", to, user);
 }
 
 fn get_user_message() -> String {
