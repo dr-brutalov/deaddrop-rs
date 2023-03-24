@@ -1,4 +1,4 @@
-use log::warn;
+use log::{warn};
 
 use super::db::connect;
 use crate::hasher::message_hash;
@@ -43,14 +43,16 @@ pub fn get_messages_for_user(user: String) -> Vec<String> {
     messages
 }
 
+// A public interface to the private function used to generate message hashes
 pub fn set_message_hash(message: String) -> String {
     message_hash(message)
+    
 }
 
 pub fn save_message(message: String, sender: String, recipient: String) {
     let db = connect();
 
-    let hashed_message = message_hash(message.clone());
+    let hashed_message = set_message_hash(message.clone());
 
     let query = "INSERT INTO Messages (sender, recipient, hashed_message, data) VALUES ((SELECT id FROM Users WHERE user = :sender), (SELECT id FROM Users WHERE user = :recipient), :hashed_message, :message);";
     let mut stmt = db.prepare(query).expect("expected to prepare statement correctly");

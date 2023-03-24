@@ -11,11 +11,6 @@ pub fn get_user(user: String) -> Option<i64> {
 
     encrypt_data();
 
-    // if let Some(row) = rows.next().expect("expected to find something in results") {
-    //     Some(row.get(0).expect("expected there to be a value in the row"))
-    // } else {
-    //     None
-    // }
     rows.next().expect("expected to find something in results").map(|row| row.get(0).expect("expected there to be a value in the row"))
 
 }

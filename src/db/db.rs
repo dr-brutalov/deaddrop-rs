@@ -1,4 +1,4 @@
-use log::info;
+use log::{info, error, warn};
 use rusqlite::{Connection};
 use core::panic;
 use std::{fs, path::Path};
@@ -19,8 +19,9 @@ pub fn connect() -> Connection {
         for command in commands {
             connection.execute(command, ()).unwrap_or_else(|error| {
                 if error.to_string() == "not an error" {
-                    info!("Still not an error");
+                    warn!("Still not an error.");
                 } else {
+                    error!("Database initialization is broken, check the init schema. Error: {}", error);
                     panic!("Database initialization is borked: {}", error);
                 }
                 0 // C-style return code for all's good!

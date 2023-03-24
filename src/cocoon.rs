@@ -66,7 +66,7 @@ pub fn decrypt_data() {
 
 // pub fn create_global_cocoon() -> Cocoon<Creation> {
 //     let cocoon = create_cocoon();
-//     retrun cocoon
+//     return cocoon
 // }
 
 // fn create_cocoon() -> &'static Cocoon<'static, Creation> {

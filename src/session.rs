@@ -7,7 +7,6 @@ pub fn get_password() -> String {
 }
 
 pub fn authenticate(user: String) -> Result<bool, bcrypt::BcryptError> {
-     
     // bypass auth if no users currently exist
     if db::users::no_users() {
         info!("First user will be created.");
@@ -17,9 +16,6 @@ pub fn authenticate(user: String) -> Result<bool, bcrypt::BcryptError> {
     let pass = read_pass();
     let hash_opt = db::users::get_user_pass_hash(user);
 
-    // match hash_opt {
-    //     hash => bcrypt::verify(pass, &hash[..]),
-    // }
     let hash = hash_opt;
     bcrypt::verify(pass, &hash[..])
 }
